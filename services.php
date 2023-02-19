@@ -1,5 +1,7 @@
 <?php
   require_once 'classes/autoload.php';
+  include_once 'config/config.php';
+
   $database = new classes\Database();
 ?>
 
