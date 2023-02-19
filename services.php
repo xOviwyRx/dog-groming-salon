@@ -1,7 +1,8 @@
 <?php
-  include "connect.php";
-  $db = connect();
+  require_once 'classes/autoload.php';
+  $database = new classes\Database();
 ?>
+
 <!doctype html>
 <html lang="en">
   <head>
@@ -45,9 +46,7 @@
     <div class="row row-cols-1 row-cols-md-3 mb-3 text-center">
       <!-- Wash Card -->
       <?php
-        $serviceQuery = $db->query("SELECT price FROM services WHERE name = 'Wash'");
-        $serviceResult = $serviceQuery->fetch(PDO::FETCH_ASSOC);
-        $price = $serviceResult['price'];
+        $wash_service = $database->getServiceFromDB('Wash');
       ?>
       <div class="col">
         <div class="card mb-4 rounded-3 shadow-sm">
@@ -55,11 +54,12 @@
             <h4 class="my-0 fw-normal">Wash</h4>
           </div>
           <div class="card-body">
-            <h1 class="card-title pricing-card-title">$<?=$price;?></h1>
+            <h1 class="card-title pricing-card-title">$<?=$wash_service->getPrice();?></h1>
             <ul class="list-unstyled mt-3 mb-4">
-              <li>Basic Wash</li>
-              <li>Standard Shampoo</li>
-              <li>&nbsp;</li>
+              <?php $desc_array = $wash_service->getDescription();
+              foreach ($desc_array as $element): ?>
+                <li><?=$element?></li>
+              <?php endforeach; ?>
             </ul>
             <a href="contact.php" type="button" class="w-100 btn btn-lg btn-primary">Contact to Book</a>
           </div>
@@ -67,9 +67,7 @@
       </div>
       <!-- Trim Card -->
       <?php
-        $serviceQuery = $db->query("SELECT price FROM services WHERE name = 'Trim'");
-        $serviceResult = $serviceQuery->fetch(PDO::FETCH_ASSOC);
-        $price = $serviceResult['price'];
+      $trim_service = $database->getServiceFromDB('Trim');
       ?>
       <div class="col">
         <div class="card mb-4 rounded-3 shadow-sm">
@@ -77,11 +75,12 @@
             <h4 class="my-0 fw-normal">Trim</h4>
           </div>
           <div class="card-body">
-            <h1 class="card-title pricing-card-title">$<?=$price;?></h1>
+            <h1 class="card-title pricing-card-title">$<?=$trim_service->getPrice();?></h1>
             <ul class="list-unstyled mt-3 mb-4">
-              <li>Standard Trim</li>
-              <li>Custom Styles Available</li>
-              <li>&nbsp;</li>
+              <?php $desc_array = $trim_service->getDescription();
+              foreach ($desc_array as $element): ?>
+                <li><?=$element?></li>
+              <?php endforeach; ?>
             </ul>
             <a href="contact.php" type="button" class="w-100 btn btn-lg btn-primary">Contact to Book</a>
           </div>
@@ -90,20 +89,19 @@
       <!-- Full Grooming Card -->
       <div class="col">
         <?php
-          $serviceQuery = $db->query("SELECT price FROM services WHERE name = 'Full Grooming'");
-          $serviceResult = $serviceQuery->fetch(PDO::FETCH_ASSOC);
-          $price = $serviceResult['price'];
+          $fool_grooming_service = $database->getServiceFromDB('Full Grooming');
         ?>
         <div class="card mb-4 rounded-3 shadow-sm border-primary">
           <div class="card-header py-3 text-bg-primary border-primary">
             <h4 class="my-0 fw-normal">Full Grooming</h4>
           </div>
           <div class="card-body">
-            <h1 class="card-title pricing-card-title">$<?=$price;?></h1>
+            <h1 class="card-title pricing-card-title">$<?=$fool_grooming_service->getPrice();?></h1>
             <ul class="list-unstyled mt-3 mb-4">
-              <li>Luxury Wash</li>
-              <li>Elite Trim</li>
-              <li>First-Class Grooming</li>
+              <?php $desc_array = $fool_grooming_service->getDescription();
+              foreach ($desc_array as $element): ?>
+                <li><?=$element?></li>
+              <?php endforeach; ?>
             </ul>
             <a href="contact.php" type="button" class="w-100 btn btn-lg btn-primary">Contact to Book</a>
           </div>
