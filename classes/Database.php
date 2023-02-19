@@ -6,10 +6,10 @@ class Database{
   private $pdo;
 
   private function connect() {
-    $hostname = 'localhost';
-    $dbname = 'salon';
-    $username = 'salon';
-    $password = 'saloon';
+    $hostname = HOSTNAME;
+    $dbname = DB_NAME;
+    $username = USERNAME;
+    $password = PASSWORD;
 
     $dsn = "mysql:host=$hostname;dbname=$dbname";
 
