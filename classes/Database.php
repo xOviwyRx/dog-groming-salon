@@ -28,9 +28,8 @@ class Database{
     $this->pdo = NULL;
   }
 
-  public function getServiceFromDB($service_name){
-    $service_query = $this->pdo->query("SELECT price, description FROM services WHERE name = '$service_name'");
-    $service_result = $service_query->fetch(\PDO::FETCH_ASSOC);
-    return new Service($service_result['name'], $service_result['price'], $service_result['description']);
+  public function fetchAllServicesFromDB(){
+    $service_query = $this->pdo->query("SELECT * FROM services");
+    return $service_query->fetchAll();
   }
 }

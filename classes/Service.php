@@ -17,4 +17,12 @@ class Service{
   public function getPrice(){
     return $this->price;
   }
+  static public function getAllServicesFromDB($db){
+    $records = $db->fetchAllServicesFromDB();
+    $services = array();
+    foreach ($records as $record){
+      $services[] = new Service($record['name'], $record['price'], $record['description']);
+    }
+    return $services;
+  }
 }

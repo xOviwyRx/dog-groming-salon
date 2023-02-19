@@ -44,69 +44,30 @@
 
   <main>
     <div class="row row-cols-1 row-cols-md-3 mb-3 text-center">
-      <!-- Wash Card -->
       <?php
-        $wash_service = $database->getServiceFromDB('Wash');
+        $services = classes\Service::getAllServicesFromDB($database);
+
+        // $wash_service = $database->getServiceFromDB('Wash');
+        foreach ($services as $service):
       ?>
-      <div class="col">
-        <div class="card mb-4 rounded-3 shadow-sm">
-          <div class="card-header py-3">
-            <h4 class="my-0 fw-normal">Wash</h4>
+          <div class="col">
+            <div class="card mb-4 rounded-3 shadow-sm">
+              <div class="card-header py-3">
+                <h4 class="my-0 fw-normal"><?=$service->getName()?></h4>
+              </div>
+              <div class="card-body">
+                <h1 class="card-title pricing-card-title">$<?=$service->getPrice();?></h1>
+                <ul class="list-unstyled mt-3 mb-4">
+                  <?php $desc_array = $service->getDescription();
+                  foreach ($desc_array as $element): ?>
+                    <li><?=$element?></li>
+                  <?php endforeach; ?>
+                </ul>
+                <a href="contact.php" type="button" class="w-100 btn btn-lg btn-primary">Contact to Book</a>
+              </div>
+            </div>
           </div>
-          <div class="card-body">
-            <h1 class="card-title pricing-card-title">$<?=$wash_service->getPrice();?></h1>
-            <ul class="list-unstyled mt-3 mb-4">
-              <?php $desc_array = $wash_service->getDescription();
-              foreach ($desc_array as $element): ?>
-                <li><?=$element?></li>
-              <?php endforeach; ?>
-            </ul>
-            <a href="contact.php" type="button" class="w-100 btn btn-lg btn-primary">Contact to Book</a>
-          </div>
-        </div>
-      </div>
-      <!-- Trim Card -->
-      <?php
-      $trim_service = $database->getServiceFromDB('Trim');
-      ?>
-      <div class="col">
-        <div class="card mb-4 rounded-3 shadow-sm">
-          <div class="card-header py-3">
-            <h4 class="my-0 fw-normal">Trim</h4>
-          </div>
-          <div class="card-body">
-            <h1 class="card-title pricing-card-title">$<?=$trim_service->getPrice();?></h1>
-            <ul class="list-unstyled mt-3 mb-4">
-              <?php $desc_array = $trim_service->getDescription();
-              foreach ($desc_array as $element): ?>
-                <li><?=$element?></li>
-              <?php endforeach; ?>
-            </ul>
-            <a href="contact.php" type="button" class="w-100 btn btn-lg btn-primary">Contact to Book</a>
-          </div>
-        </div>
-      </div>
-      <!-- Full Grooming Card -->
-      <div class="col">
-        <?php
-          $fool_grooming_service = $database->getServiceFromDB('Full Grooming');
-        ?>
-        <div class="card mb-4 rounded-3 shadow-sm border-primary">
-          <div class="card-header py-3 text-bg-primary border-primary">
-            <h4 class="my-0 fw-normal">Full Grooming</h4>
-          </div>
-          <div class="card-body">
-            <h1 class="card-title pricing-card-title">$<?=$fool_grooming_service->getPrice();?></h1>
-            <ul class="list-unstyled mt-3 mb-4">
-              <?php $desc_array = $fool_grooming_service->getDescription();
-              foreach ($desc_array as $element): ?>
-                <li><?=$element?></li>
-              <?php endforeach; ?>
-            </ul>
-            <a href="contact.php" type="button" class="w-100 btn btn-lg btn-primary">Contact to Book</a>
-          </div>
-        </div>
-      </div>
+        <?php endforeach; ?>
     </div>
 
     <h2 class="display-6 text-center mb-4">Compare Services</h2>
@@ -116,45 +77,25 @@
         <thead>
           <tr>
             <th style="width: 34%;"></th>
-            <th style="width: 22%;">Wash</th>
-            <th style="width: 22%;">Trim</th>
-            <th style="width: 22%;">Full Grooming</th>
+            <?php foreach ($services as $service): ?>
+                <th style="width: 22%;"><?=$service->getName();?></th>
+            <?php endforeach;?>
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <th scope="row" class="text-start">Standard Wash</th>
-            <td><svg class="bi" width="24" height="24"><use xlink:href="#check"/></svg></td>
-            <td></td>
-            <td><svg class="bi" width="24" height="24"><use xlink:href="#check"/></svg></td>
-          </tr>
-          <tr>
-            <th scope="row" class="text-start">Extra Wash</th>
-            <td></td>
-            <td></td>
-            <td><svg class="bi" width="24" height="24"><use xlink:href="#check"/></svg></td>
-          </tr>
-        </tbody>
-
-        <tbody>
-          <tr>
-            <th scope="row" class="text-start">Standard Trim</th>
-            <td></td>
-            <td><svg class="bi" width="24" height="24"><use xlink:href="#check"/></svg></td>
-            <td><svg class="bi" width="24" height="24"><use xlink:href="#check"/></svg></td>
-          </tr>
-          <tr>
-            <th scope="row" class="text-start">Extra Trim</th>
-            <td></td>
-            <td></td>
-            <td><svg class="bi" width="24" height="24"><use xlink:href="#check"/></svg></td>
-          </tr>
-          <tr>
-            <th scope="row" class="text-start">Hair Ribbon</th>
-            <td></td>
-            <td></td>
-            <td><svg class="bi" width="24" height="24"><use xlink:href="#check"/></svg></td>
-          </tr>
+          <?php $categories = ['Basic Wash', 'Extra Wash', 'Standard Trim', 'Extra Trim', 'Hair Ribbon'];
+            foreach ($categories as $category): ?>
+            
+                <tr>
+                  <th scope="row" class="text-start"><?= $category ?></th>
+                  <?php foreach ($services as $service): ?>
+                      <td>
+                      <?php if (in_array($category, $service->getDescription()) || $service->getName() === 'Full Grooming'): ?>
+                        <svg class="bi" width="24" height="24"><use xlink:href="#check"/></svg>
+                      <?php endif; ?>
+                      </td>
+                  <?php endforeach; ?>
+         <?php endforeach; ?>
         </tbody>
       </table>
     </div>
