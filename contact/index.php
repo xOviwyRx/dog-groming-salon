@@ -6,10 +6,10 @@
     <title>Contact Us</title>
 
     <!-- Include Bootstrap CSS -->
-    <link href="/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom styles for this template -->
-    <link href="/css/services.css" rel="stylesheet">
+    <link href="../css/services.css" rel="stylesheet">
   </head>
   <body>
     
@@ -66,8 +66,7 @@
                     </div>
                </div>
           </div>
-        </div>
-      </form>
+   </form>
   
   <footer class="pt-4 my-md-5 pt-md-5 border-top">
     <div class="row">
