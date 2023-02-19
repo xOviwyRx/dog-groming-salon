@@ -32,13 +32,13 @@
       <nav class="nav nav-masthead justify-content-center float-md-end">
         <a class="nav-link fw-bold py-1 px-0" aria-current="page" href="index.php">Home</a>
         <a class="nav-link fw-bold py-1 px-0 active" href="services.php">Services</a>
-        <a class="nav-link fw-bold py-1 px-0" href="contact.php">Contact</a>
+        <a class="nav-link fw-bold py-1 px-0" href="/contact/">Contact</a>
       </nav>
     </div>
 
     <div class="pricing-header p-3 pb-md-4 mx-auto text-center">
       <h1 class="display-4 fw-normal pt-5">Salon Services</h1>
-      <p class="fs-5 text-muted">Please see our available services and pricing below, then <a href="contact.php">Contact Us</a> to book an appointment.</p>
+      <p class="fs-5 text-muted">Please see our available services and pricing below, then <a href="/contact/">Contact Us</a> to book an appointment.</p>
     </div>
   </header>
 
@@ -63,7 +63,7 @@
                     <li><?=$element?></li>
                   <?php endforeach; ?>
                 </ul>
-                <a href="contact.php" type="button" class="w-100 btn btn-lg btn-primary">Contact to Book</a>
+                <a href="/contact/" type="button" class="w-100 btn btn-lg btn-primary">Contact to Book</a>
               </div>
             </div>
           </div>
@@ -116,7 +116,7 @@
       <div class="col-6 col-md">
         <h5>Resources</h5>
         <ul class="list-unstyled text-small">
-          <li class="mb-1"><a class="link-secondary text-decoration-none" href="contact.php">Contact Us</a></li>
+          <li class="mb-1"><a class="link-secondary text-decoration-none" href="/contact/">Contact Us</a></li>
         </ul>
       </div>
       <div class="col-6 col-md">
