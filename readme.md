@@ -11,7 +11,7 @@ and register on this website
 ![image](https://user-images.githubusercontent.com/98734760/220156602-8563d521-7344-4f48-81b3-fc7fcbdc86d6.png)
 
 
-Editors(Administrators) of this website can change all services.
+Editors of this website can change all services that are available in the database.
 ![image](https://user-images.githubusercontent.com/98734760/220149444-328bf802-7beb-49d8-90e1-48b321734bbc.png)
 ![image](https://user-images.githubusercontent.com/98734760/220156361-f1326241-268c-4ab4-ae76-9387740274d8.png)
 
