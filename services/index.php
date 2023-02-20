@@ -41,7 +41,7 @@
         <a class="nav-link fw-bold py-1 px-0" aria-current="page" href="../index.php">Home</a>
         <a class="nav-link fw-bold py-1 px-0 active" href="index.php">Services</a>
         <a class="nav-link fw-bold py-1 px-0" href="../contact/">Contact</a>
-        <?php if ($account->isAuthenticated($db)): ?>
+        <?php if ($account->isAuthenticated($database)): ?>
              <a class="nav-link fw-bold py-1 px-0" href="/login/logout.php">Log Out</a>
          <?php else: ?>
              <a class="nav-link fw-bold py-1 px-0" href="/login/">Login</a>
