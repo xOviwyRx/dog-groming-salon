@@ -39,6 +39,7 @@
         <a class="nav-link fw-bold py-1 px-0" aria-current="page" href="../index.php">Home</a>
         <a class="nav-link fw-bold py-1 px-0" href="index.php">Services</a>
         <a class="nav-link fw-bold py-1 px-0 active" href="../contact/">Contact</a>
+        <a class="nav-link fw-bold py-1 px-0" href="/login/logout.php">Log Out</a>
       </nav>
     </div>
 
