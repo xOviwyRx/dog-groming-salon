@@ -1,3 +1,13 @@
+<?php session_start(); 
+require_once '../classes/autoload.php';
+include_once '../config/config.php';
+$db = new classes\Database;
+if (!isset($_SESSION['account'])){
+    $account = new classes\Account;
+} else {
+    $account = unserialize($_SESSION['account']);
+}
+?>
 <!doctype html>
 <html lang="en">
   <head>
@@ -26,8 +36,13 @@
       <h3 class="float-md-start mb-0">Dog Grooming Salon</h3>
       <nav class="nav nav-masthead justify-content-center float-md-end">
         <a class="nav-link fw-bold py-1 px-0" aria-current="page" href="../index.php">Home</a>
-        <a class="nav-link fw-bold py-1 px-0" href="../services.php">Services</a>
+        <a class="nav-link fw-bold py-1 px-0" href="../services/">Services</a>
         <a class="nav-link fw-bold py-1 px-0 active" href="index.php">Contact</a>
+        <?php if ($account->isAuthenticated($db)): ?>
+            <a class="nav-link fw-bold py-1 px-0" href="../login/logout.php">Log Out</a>
+        <?php else: ?>
+            <a class="nav-link fw-bold py-1 px-0" href="../login/">Login</a>
+        <?php endif; ?>
       </nav>
     </div>
 

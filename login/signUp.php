@@ -25,8 +25,8 @@
       <h3 class="float-md-start mb-0">Dog Grooming Salon</h3>
       <nav class="nav nav-masthead justify-content-center float-md-end">
         <a class="nav-link fw-bold py-1 px-0" aria-current="page" href="../index.php">Home</a>
-        <a class="nav-link fw-bold py-1 px-0" href="../services.php">Services</a>
-        <a class="nav-link fw-bold py-1 px-0 active" href="index.php">Contact</a>
+        <a class="nav-link fw-bold py-1 px-0" href="../services/">Services</a>
+        <a class="nav-link fw-bold py-1 px-0 active" href="../contact/">Contact</a>
       </nav>
     </div>
 

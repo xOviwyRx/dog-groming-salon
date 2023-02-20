@@ -31,7 +31,6 @@ if (!isset($_SESSION['account'])){
         <a class="nav-link fw-bold py-1 px-0 active" aria-current="page" href="index.php">Home</a>
         <a class="nav-link fw-bold py-1 px-0" href="/services/">Services</a>
         <a class="nav-link fw-bold py-1 px-0" href="/contact/">Contact</a>
-        <a class="nav-link fw-bold py-1 px-0" href="/login/">
             <?php if ($account->isAuthenticated($db)): ?>
                 <a class="nav-link fw-bold py-1 px-0" href="/login/logout.php">Log Out</a>
             <?php else: ?>
