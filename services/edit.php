@@ -1,8 +1,19 @@
 <?php
+  session_start();
   require_once '../classes/autoload.php';
   include_once '../config/config.php';
 
   $database = new classes\Database();
+  if (!isset($_SESSION['account'])){
+    echo "You're don't have permission for this page!";
+    die();
+  } else {
+    $account = unserialize($_SESSION['account']);
+    if (!$account->isAdmin()) {
+        echo "You're don't have permission for this page!";
+        die();
+    }
+  }
 ?>
 
 <!doctype html>
