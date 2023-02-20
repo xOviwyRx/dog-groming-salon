@@ -125,7 +125,7 @@ class Account
                             $this->id = intval($row['account_id'], 10);
                             $this->name = $name;
                             $this->authenticated = TRUE;
-                            $this->registerLoginSession();
+                            $this->registerLoginSession($db);
 
                             return TRUE;
                     }

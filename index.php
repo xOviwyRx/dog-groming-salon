@@ -2,7 +2,11 @@
 require_once 'classes/autoload.php';
 include_once 'config/config.php';
 $db = new classes\Database;
-$account = new classes\Account;
+if (!isset($_SESSION['account'])){
+    $account = new classes\Account;
+} else {
+    $account = unserialize($_SESSION['account']);
+}
 ?>
 <!doctype html>
 <html lang="en" class="h-100">
@@ -28,12 +32,11 @@ $account = new classes\Account;
         <a class="nav-link fw-bold py-1 px-0" href="services.php">Services</a>
         <a class="nav-link fw-bold py-1 px-0" href="/contact/">Contact</a>
         <a class="nav-link fw-bold py-1 px-0" href="/login/">
-            <?php if ($account->isAuthenticated($db)) {
-                echo 'Log Out';
-            } else {
-                echo 'Login';
-            } ?>
-            </a>
+            <?php if ($account->isAuthenticated($db)): ?>
+                <a class="nav-link fw-bold py-1 px-0" href="/login/logout.php">Log Out</a>
+            <?php else: ?>
+                <a class="nav-link fw-bold py-1 px-0" href="/login/">Login</a>
+            <?php endif; ?>
       </nav>
     </div>
   </header>
