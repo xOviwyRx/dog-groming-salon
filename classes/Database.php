@@ -34,16 +34,12 @@ class Database{
   }
   
   public function executePrepared($query, $values){
-    try
-    {
-        $res = $this->pdo->prepare($query);
-        $res->execute($values);
-        return $res;
+    $res = $this->pdo->prepare($query);
+    $success_query = $res->execute($values);
+    if (!$success_query){
+        throw new \PDOException('Database query error');
     }
-    catch (PDOException $e)
-    {
-        throw new \Exception('Database query error');
-    }
+    return $res;
   }
   
   public function insertPrepared($query, $values){

@@ -1,8 +1,14 @@
 <?php
-  require_once 'classes/autoload.php';
-  include_once 'config/config.php';
+  session_start();
+  require_once '../classes/autoload.php';
+  include_once '../config/config.php';
 
   $database = new classes\Database();
+  if (!isset($_SESSION['account'])){
+    $account = new classes\Account;
+  } else {
+        $account = unserialize($_SESSION['account']);
+  }
 ?>
 
 <!doctype html>
@@ -32,9 +38,9 @@
     <div>
       <h3 class="float-md-start mb-0">Dog Grooming Salon</h3>
       <nav class="nav nav-masthead justify-content-center float-md-end">
-        <a class="nav-link fw-bold py-1 px-0" aria-current="page" href="index.php">Home</a>
-        <a class="nav-link fw-bold py-1 px-0 active" href="services.php">Services</a>
-        <a class="nav-link fw-bold py-1 px-0" href="/contact/">Contact</a>
+        <a class="nav-link fw-bold py-1 px-0" aria-current="page" href="../index.php">Home</a>
+        <a class="nav-link fw-bold py-1 px-0 active" href="index.php">Services</a>
+        <a class="nav-link fw-bold py-1 px-0" href="../contact/">Contact</a>
       </nav>
     </div>
 
@@ -48,12 +54,13 @@
     <div class="row row-cols-1 row-cols-md-3 mb-3 text-center">
       <?php
         $services = classes\Service::getAllServicesFromDB($database);
-
-        // $wash_service = $database->getServiceFromDB('Wash');
         foreach ($services as $service):
       ?>
           <div class="col">
             <div class="card mb-4 rounded-3 shadow-sm">
+                <?php if ($account->isAdmin()): ?>
+                    <a href="edit.php?id=<?=$service->getId()?>" class="w-100 btn btn-lg btn-success">Edit</a>
+                <?php endif ?>
               <div class="card-header py-3">
                 <h4 class="my-0 fw-normal"><?=$service->getName()?></h4>
               </div>
@@ -66,6 +73,7 @@
                   <?php endforeach; ?>
                 </ul>
                 <a href="/contact/" type="button" class="w-100 btn btn-lg btn-primary">Contact to Book</a>
+              
               </div>
             </div>
           </div>
@@ -111,14 +119,14 @@
       <div class="col-6 col-md">
         <h5>Features</h5>
         <ul class="list-unstyled text-small">
-          <li class="mb-1"><a class="link-secondary text-decoration-none" href="index.php">Home</a></li>
-          <li class="mb-1"><a class="link-secondary text-decoration-none" href="services.php">Services</a></li>
+          <li class="mb-1"><a class="link-secondary text-decoration-none" href="../index.php">Home</a></li>
+          <li class="mb-1"><a class="link-secondary text-decoration-none" href="index.php">Services</a></li>
         </ul>
       </div>
       <div class="col-6 col-md">
         <h5>Resources</h5>
         <ul class="list-unstyled text-small">
-          <li class="mb-1"><a class="link-secondary text-decoration-none" href="/contact/">Contact Us</a></li>
+          <li class="mb-1"><a class="link-secondary text-decoration-none" href="../contact/">Contact Us</a></li>
         </ul>
       </div>
       <div class="col-6 col-md">

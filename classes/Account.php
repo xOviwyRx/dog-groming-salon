@@ -16,11 +16,6 @@ class Account
 		$this->authenticated = FALSE;
                 $this->is_admin = FALSE;
 	}
-	
-	public function __destruct()
-	{
-		
-	}
         
         public function addAccount(string $name, string $passwd, Database $db): int
         {
@@ -154,7 +149,7 @@ class Account
             {
                     $query = 
 
-                    'SELECT * FROM salon.account_sessions, myschema.accounts WHERE (account_sessions.session_id = :sid) ' . 
+                    'SELECT * FROM salon.account_sessions, salon.accounts WHERE (account_sessions.session_id = :sid) ' . 
                     'AND (account_sessions.login_time >= (NOW() - INTERVAL 7 DAY)) AND (account_sessions.account_id = accounts.account_id) ' . 
                     'AND (accounts.account_enabled = 1)';
 
@@ -181,10 +176,11 @@ class Account
             $this->id = NULL;
             $this->name = NULL;
             $this->authenticated = FALSE;
+            $this->is_admin = FALSE;
 
             if (session_status() == PHP_SESSION_ACTIVE)
             {
-                    $query = 'DELETE FROM myschema.account_sessions WHERE (session_id = :sid)';
+                    $query = 'DELETE FROM salon.account_sessions WHERE (session_id = :sid)';
                     $values = array(':sid' => session_id());
                     $db->executePrepared($query, $values);
             }
@@ -196,7 +192,7 @@ class Account
         
         public function isAdmin(): bool
         {
-            $this->is_admin;
+            return $this->is_admin;
         }
 
 }
