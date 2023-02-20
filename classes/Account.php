@@ -7,12 +7,14 @@ class Account
 	private $id;
 	private $name;
 	private $authenticated;
+        private $is_admin;
 	
 	public function __construct()
 	{
 		$this->id = NULL;
 		$this->name = NULL;
 		$this->authenticated = FALSE;
+                $this->is_admin = FALSE;
 	}
 	
 	public function __destruct()
@@ -125,6 +127,7 @@ class Account
                             $this->id = intval($row['account_id'], 10);
                             $this->name = $name;
                             $this->authenticated = TRUE;
+                            $this->is_admin = filter_var($row['is_admin'], FILTER_VALIDATE_BOOLEAN);
                             $this->registerLoginSession($db);
 
                             return TRUE;
@@ -189,6 +192,11 @@ class Account
         public function isAuthenticated(): bool
         {
             return $this->authenticated;
+        }
+        
+        public function isAdmin(): bool
+        {
+            $this->is_admin;
         }
 
 }
