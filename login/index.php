@@ -34,7 +34,7 @@
     <div class="pricing-header p-3 pb-md-4 mx-auto text-center">
       <h1 class="display-4 fw-normal pt-5">Login    <a href="signUp.php">Sign Up</a></h1>
     </div>
-      <form method="POST" id="login_form" action="submitLogin.php">
+      <form method="POST" id="ajax_form" action="submitLogin.php">
         <div class="form-group">
             <div class="alert alert-danger" style="display: none;" id="error-valid"></div>
               <div class="row mb-3">
@@ -68,5 +68,5 @@
 			  src="https://code.jquery.com/jquery-3.6.0.js"
 			  integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
 			  crossorigin="anonymous"></script>
-      <script src="../js/login.js"></script>
+      <script src="../js/ajax_submit.js"></script>
 </html>

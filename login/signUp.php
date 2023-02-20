@@ -33,9 +33,10 @@
     <div class="pricing-header p-3 pb-md-4 mx-auto text-center">
         <h1 class="display-4 fw-normal pt-5"><a href="index.php">Login</a>    Sign Up</h1>
     </div>
-      <form method="POST" id="login_form" action="submitSignUp.php">
+      <form method="POST" id="ajax_form" action="submitSignUp.php">
         <div class="form-group">
             <div class="alert alert-danger" style="display: none;" id="error-valid"></div>
+            <div class="alert alert-success" id="alert-success" style="display: none;">Account was created. Please login now.</div>
               <div class="row mb-3">
                     <label class="col-form-label col-sm-2" for="name">Your Name</label>
                     <div class="col-sm-10">
@@ -52,7 +53,7 @@
               <div class="row mb-3">
                     <label class="col-form-label col-sm-3" for="password">Repeat Your Password</label>
                     <div class="col-sm-9">
-                        <input class="form-control border-dark" name="password" minlength="8" maxlength="16" type="password" required/>
+                        <input class="form-control border-dark" name="password2" minlength="8" maxlength="16" type="password" required/>
                     </div>
               </div>
                     
@@ -67,5 +68,10 @@
       <?php
         include "../footer.html";
         ?>
+      <script
+			  src="https://code.jquery.com/jquery-3.6.0.js"
+			  integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
+			  crossorigin="anonymous"></script>
+      <script src="../js/ajax_submit.js"></script>
   </div>
   <body>

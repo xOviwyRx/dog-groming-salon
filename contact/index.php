@@ -35,7 +35,7 @@
       <h1 class="display-4 fw-normal pt-5">Contact Us</h1>
     </div>
   </header>
-    <form method="POST" id="contact_us_form" action="submit.php">
+    <form method="POST" id="ajax_form" action="submit.php">
         <div class="form-group">
             <div class="alert alert-danger" style="display: none;" id="error-valid"></div>
             <div class="alert alert-success" id="alert-success" style="display: none;">Your message was sent</div>
@@ -107,5 +107,5 @@
 			  src="https://code.jquery.com/jquery-3.6.0.js"
 			  integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
 			  crossorigin="anonymous"></script>
-  <script src="../js/contact.js"></script>
+  <script src="../js/ajax_submit.js"></script>
 </html>
