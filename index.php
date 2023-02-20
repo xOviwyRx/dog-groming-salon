@@ -1,3 +1,9 @@
+<?php session_start(); 
+require_once 'classes/autoload.php';
+include_once 'config/config.php';
+$db = new classes\Database;
+$account = new classes\Account;
+?>
 <!doctype html>
 <html lang="en" class="h-100">
   <head>
@@ -21,6 +27,13 @@
         <a class="nav-link fw-bold py-1 px-0 active" aria-current="page" href="index.php">Home</a>
         <a class="nav-link fw-bold py-1 px-0" href="services.php">Services</a>
         <a class="nav-link fw-bold py-1 px-0" href="/contact/">Contact</a>
+        <a class="nav-link fw-bold py-1 px-0" href="/login/">
+            <?php if ($account->isAuthenticated($db)) {
+                echo 'Log Out';
+            } else {
+                echo 'Login';
+            } ?>
+            </a>
       </nav>
     </div>
   </header>

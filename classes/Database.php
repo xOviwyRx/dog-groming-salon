@@ -32,4 +32,27 @@ class Database{
     $service_query = $this->pdo->query("SELECT * FROM services");
     return $service_query->fetchAll();
   }
+  
+  public function executePrepared($query, $values){
+    try
+    {
+        $res = $this->pdo->prepare($query);
+        $res->execute($values);
+        return $res;
+    }
+    catch (PDOException $e)
+    {
+        throw new \Exception('Database query error');
+    }
+  }
+  
+  public function insertPrepared($query, $values){
+    $this->executePrepared($query, $values);
+    return $this->pdo->lastInsertId();
+  } 
+  
+  public function fetchPrepared($query, $values){
+    $res = $this->executePrepared($query, $values);
+    return $res->fetch(\PDO::FETCH_ASSOC);
+  }
 }
