@@ -1,5 +1,5 @@
 # Dog Grooming Salon
-Database-driven website on PHP with Bootstrap, aJax, JS, jQuery, MySQL, PDO.
+Database-driven website on PHP with Bootstrap, AJAX, JS, jQuery, MySQL, PDO.
 ![image](https://user-images.githubusercontent.com/98734760/220148044-ebe7ea56-97c4-4883-bb95-1f935c5ead1f.png)
 On this website users can see available dog grooming services that store in the database. 
 ![image](https://user-images.githubusercontent.com/98734760/220155359-55b9f483-f4fb-4c70-ab5d-59526e616db8.png)
