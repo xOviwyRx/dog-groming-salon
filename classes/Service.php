@@ -2,12 +2,20 @@
 namespace classes;
 
 class Service{
+    
   private $name, $price, $description, $id;
-  public function __construct(string $name, string $price, string $description, string $id){
-    $this->setName($name);
-    $this->setPrice($price);
-    $this->setDescription($description);
-    $this->id = (int)$id;
+  
+  public function __construct(string $id, string $name = '', string $price = '', string $description = '') {  
+    if (!empty($name)) {
+        $this->name = $name; 
+    }
+    if (!empty($price)) {
+        $this->price = $price;
+    }
+    if (!empty($description)){
+        $this->description = $description;
+    }
+    $this->id = $id;
   }
   public function getDescription(){
     return explode(',', $this->description);
@@ -54,7 +62,7 @@ class Service{
     $records = $db->fetchAllServicesFromDB();
     $services = array();
     foreach ($records as $record){
-      $services[] = new Service($record['name'], $record['price'], $record['description'], $record['id']);
+      $services[] = new Service($record['id'], $record['name'], $record['price'], $record['description']);
     }
     return $services;
   }
@@ -64,7 +72,7 @@ class Service{
     $values = ['id' => $id];
     $row = $db->fetchPrepared($query, $values);
     if ($row){
-        return new Service($row['name'], $row['price'], $row['description'], $row['id']);
+        return new Service($row['id'], $row['name'], $row['price'], $row['description']);
     } else {
         throw new \Exception("Service not found in the database");
     }
