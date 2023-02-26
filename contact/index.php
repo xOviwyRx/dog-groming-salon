@@ -20,6 +20,7 @@ if (!isset($_SESSION['account'])){
 
     <!-- Custom styles for this template -->
     <link href="../css/services.css" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
   </head>
   <body>
     
@@ -90,9 +91,5 @@ if (!isset($_SESSION['account'])){
 
     
   </body>
-  <script
-			  src="https://code.jquery.com/jquery-3.6.0.js"
-			  integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
-			  crossorigin="anonymous"></script>
   <script src="../js/ajax_submit.js"></script>
 </html>

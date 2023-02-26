@@ -77,6 +77,7 @@
                     <li><?=$element?></li>
                   <?php endforeach; ?>
                 </ul>
+                <a href="/booking/id=<?=$service->getId()?>" type="button" class="w-100 btn btn-lg btn-primary mb-3">Book</a>
                 <a href="/contact/" type="button" class="w-100 btn btn-lg btn-primary">Contact to Book</a>
               
               </div>
