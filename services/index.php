@@ -77,7 +77,9 @@
                     <li><?=$element?></li>
                   <?php endforeach; ?>
                 </ul>
+                <?php if ($account->isAuthenticated()): ?>
                 <a href="/booking?id=<?=$service->getId()?>" type="button" class="w-100 btn btn-lg btn-primary mb-3">Book</a>
+                <?php endif; ?>
                 <a href="/contact/" type="button" class="w-100 btn btn-lg btn-primary">Contact to Book</a>
               
               </div>

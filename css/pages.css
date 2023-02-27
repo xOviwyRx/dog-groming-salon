@@ -75,3 +75,9 @@ body {
 
 textarea { resize: none; }
 
+.alert{
+    height: 45px;
+    font-weight: bold;
+    display: none;
+}
+

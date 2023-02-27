@@ -194,6 +194,10 @@ class Account
         {
             return $this->is_admin;
         }
+        
+        public function getId() : int {
+            return $this->id;
+        }
 
 }
 

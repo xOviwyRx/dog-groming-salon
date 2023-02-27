@@ -3,9 +3,14 @@ require_once '../classes/autoload.php';
 include_once '../config/config.php';
 $db = new classes\Database;
 if (!isset($_SESSION['account'])){
-    $account = new classes\Account;
+    echo "You don't have permission for this page";
+    die();
 } else {
     $account = unserialize($_SESSION['account']);
+    if (!$account->isAuthenticated()){
+        echo "You don't have permission for this page";
+        die();
+    }
 }
 ?>
 <!doctype html>
@@ -21,6 +26,7 @@ if (!isset($_SESSION['account'])){
     <!-- Custom styles for this template -->
     <link href="../css/pages.css" rel="stylesheet">
     <link href="../css/booking/main.css" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
   </head>
   <body>
     
@@ -53,12 +59,12 @@ if (!isset($_SESSION['account'])){
   </header>
     <form method="POST" id="ajax_form" action="submit.php">
         <div class="form-group">
-            <div class="alert alert-danger" style="display: none;" id="error-valid"></div>
-            <div class="alert alert-success" id="alert-success" style="display: none;">You successfully done preservation</div>
+            <div class="alert alert-danger" id="error-valid"></div>
+            <div class="alert alert-success" id="alert-success">You successfully done preservation</div>
               <div class="row mb-3">
                     <label class="col-form-label col-sm-2" for="service">Service</label>
                     <div class="col-sm-5 select_box">
-                        <select class="form-control border-dark" name = "service">
+                        <select class="form-control border-dark" name = "service_id">
                             <?php $services = classes\Service::getAllServicesFromDB($db);
                             foreach ($services as $service): ?>
                             <option value = "<?=$service->getId()?>" <?php if ($service->getId() === $_GET['id']) echo selected ?>>
@@ -67,31 +73,32 @@ if (!isset($_SESSION['account'])){
                         </select>
                     </div>
                 </div>
-              <div class="row mb-3">
-                    <label class="col-form-label col-sm-2" for="name">Your Name</label>
-                    <div class="col-sm-10">
-                        <input class="form-control border-dark" name="name" type="text" required/>
-                    </div>
-              </div>
-              
-              <div class="row mb-3">
-                    <label class="col-form-label col-sm-2" for="email">Your Email</label>
-                    <div class="col-sm-10">
-                        <input class="form-control border-dark" name="email" type="email" required/>
-                    </div>
-              </div>
+                <input type="hidden" name="user_id" value="<?=$account->getId()?>"/>
+    <!--              <div class="row mb-3">
+                        <label class="col-form-label col-sm-2" for="name">Your Name</label>
+                        <div class="col-sm-10">
+                            <input class="form-control border-dark" name="name" type="text" required/>
+                        </div>
+                  </div>
+
+                  <div class="row mb-3">
+                        <label class="col-form-label col-sm-2" for="email">Your Email</label>
+                        <div class="col-sm-10">
+                            <input class="form-control border-dark" name="email" type="email" required/>
+                        </div>
+                  </div>-->
             
                <div class="row mb-3">
                     <label class="col-form-label col-sm-2" for="email">Date</label>
                     <div class="col-sm-10">
-                        <input class="form-control border-dark" name="email" type="date" required/>
+                        <input class="form-control border-dark" name="date" type="date" required/>
                     </div>
               </div>
             
               <div class="row mb-3">
                         <label class="col-form-label col-sm-2" for="email">Time</label>
                     <div class="col-sm-10">
-                        <input class="form-control border-dark" name="email" type="time" required/>
+                        <input class="form-control border-dark" name="time" type="time" required/>
                     </div>
               </div>
                     
