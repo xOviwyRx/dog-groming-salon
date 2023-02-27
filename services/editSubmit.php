@@ -1,7 +1,7 @@
 <?php
 session_start();
-require_once '../classes/autoload.php';
-include_once '../config/config.php';
+require '../classes/autoload.php';
+require '../config/config.php';
 $database = new classes\Database();
 if ($_SERVER["REQUEST_METHOD"] == "POST"){
     try{
@@ -11,7 +11,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
         $service->setPrice($_POST['price']);
         $service->updateServiceInDB($database);
         echo json_encode(['code'=>'200', 'location'=>'index.php']);
-    } catch(\Exception $e) {
+    } catch(Exception $e) {
         echo json_encode(['code'=>'500', 'msg'=>$e->getMessage()]);
     }
 }

@@ -16,7 +16,7 @@
     <link href="/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom styles for this template -->
-    <link href="/css/services.css" rel="stylesheet">
+    <link href="/css/pages.css" rel="stylesheet">
     
   </head>
   <div class="container py-3">
